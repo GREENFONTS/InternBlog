@@ -41,7 +41,7 @@ const PostDetails = () => {
             <img
               src={post.image}
               alt=""
-              className="object-top h-full w-full object-cover rounded-t-lg lg:rounded-lg"
+              className="object-cover h-full w-full object-cover rounded-t-lg lg:rounded-lg"
             />
           </div>
           <div className="px-4 lg:px-0 py-5">

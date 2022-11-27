@@ -10,7 +10,7 @@ const PostCard = ({ post, deletePost }) => {
   return (
     <div className="w-full flex flex-col gap-y-9 h-[350px] mx-auto shadow p-3">
       <div className="h-1/2 w-full container flex justify-center items-center">
-        <img className="w-full h-full" src={post.image} alt="post" />
+        <img className="w-full h-full object-cover" src={post.image} alt="post" />
       </div>
       <div className="flex flex-col gap-y-1 px-2">
         <div className="flex justify-between items-center">
