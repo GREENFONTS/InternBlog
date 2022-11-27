@@ -30,6 +30,7 @@ function CreatePost() {
 
   const createPost = async (e) => {
     e.preventDefault()
+    setButtonDisabled(true)
     setLoading(true);
     let result = await GetImageUrl(image);
 

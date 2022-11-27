@@ -37,7 +37,7 @@ const PostDetails = () => {
         <LoaderComponent />
       ) : (
         <div className="bg-white shadow-lg w-5/6 mx-auto my-9 rounded-lg lg:p-8 pb-12 mb-8">
-          <div className="relative overflow-hidden mb-6">
+          <div className="relative overflow-hidden mb-6 p-5">
             <img
               src={post.image}
               alt=""
