@@ -14,7 +14,7 @@ const Nav = ({ isAuth, setIsAuth }) => {
 
   return (
     <nav className="bg-gray-900 flex justify-around items-center w-full h-[70px] text-white font-bold">
-      <div className="sm:w-1/2 xl:w-1/4 flex justify-between items-center">
+      <div className="w-full px-6 sm:px-0 sm:w-1/2 xl:w-1/3 flex justify-between items-center">
         <Link to="/">
           <h3 className="text-sm sm:text-md md:text-2xl font-sans">
             Home

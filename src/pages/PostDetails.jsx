@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getDocs, collection } from "firebase/firestore";
+import { db } from "../firebase-config";
 
-const PostDetails = () => {
+const PostDetails = ({setLoading}) => {
+    
+
+    useEffect(() => {
+        setLoading(true)
+        const postsCollectionRef = collection(db, "posts");
+        const getPosts = async () => {
+          const data = await getDocs(postsCollectionRef);
+          setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+          setLoading(false);
+        };
+    
+        getPosts();
+      }, []);
   return (
     <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
       {/* <div className="relative overflow-hidden shadow-md mb-6"> */}
