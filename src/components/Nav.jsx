@@ -13,29 +13,29 @@ const Nav = ({ isAuth, setIsAuth }) => {
   };
 
   return (
-    <nav className="bg-gray-900 flex justify-around items-center w-full">
+    <nav className="bg-gray-900 flex justify-around items-center w-full h-[70px] text-white font-bold">
       <div className="sm:w-1/2 xl:w-1/4 flex justify-between items-center">
         <Link to="/">
-          <h3 className="text-sm sm:text-md md:text-xl font-sans font-light">
+          <h3 className="text-sm sm:text-md md:text-2xl font-sans">
             Home
           </h3>
         </Link>
 
         {!isAuth ? (
           <Link to="/login">
-            <h3 className="text-sm sm:text-md md:text-xl font-sans font-light">
+            <h3 className="text-sm sm:text-md md:text-2xl font-sans">
               Login
             </h3>
           </Link>
         ) : (
           <>
             <Link to="/createpost">
-              <h3 className="text-sm sm:text-md md:text-xl font-sans font-light">
+              <h3 className="text-sm sm:text-md md:text-2xl font-sans">
                 Create Post
               </h3>
             </Link>
             <button onClick={signUserOut}>
-              <h3 className="text-sm sm:text-md md:text-xl font-sans font-light">
+              <h3 className="text-sm sm:text-md md:text-2xl font-sans">
                 Log Out
               </h3>
             </button>
