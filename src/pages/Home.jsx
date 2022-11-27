@@ -28,8 +28,8 @@ const Home = () => {
     const filteredPosts = postLists.filter((post) => {
       if (searchText !== "") {
         if (
-          post.title.toLowerCase().includes(searchText) ||
-          post.content.toLowerCase().includes(searchText)
+          post.title.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()) ||
+          post.content.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
         ) {
           return post;
         }
