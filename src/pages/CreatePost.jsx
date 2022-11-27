@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
 import {GetImageUrl} from "../utils/UploadImage"
+import {GlobalContext} from "../App"
 
-function CreatePost({ isAuth, setLoading }) {
+function CreatePost() {
+  const {isAuth, setLoading} = useContext(GlobalContext)
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
@@ -16,7 +18,7 @@ function CreatePost({ isAuth, setLoading }) {
     if (!isAuth) {
       navigate("/login");
     }
-  }, []);
+  }, [isAuth, navigate]);
 
   useEffect(() => {
     if(image === "" || title === "" || content === ""){
@@ -26,7 +28,8 @@ function CreatePost({ isAuth, setLoading }) {
     }
   }, [title, content, image])
 
-  const createPost = async () => {
+  const createPost = async (e) => {
+    e.preventDefault()
     setLoading(true);
     let result = await GetImageUrl(image);
 
@@ -36,7 +39,7 @@ function CreatePost({ isAuth, setLoading }) {
         title,
         image,
         content,
-        created_at: new Date().getUTCDate(),
+        created_at: new Date().toUTCString(),
         author: {
           name: auth.currentUser.displayName,
           id: auth.currentUser.uid,
@@ -55,7 +58,7 @@ function CreatePost({ isAuth, setLoading }) {
       <div className="flex justify-center items-center p-3 my-5">
         <h2 className="font-sans text-5xl">Create Post</h2>
       </div>
-      <div className="block p-6 rounded-lg shadow-lg bg-white w-2/5 mx-auto my-8">
+      <div className="block p-6 rounded-lg shadow-lg bg-white  sm:w-4/5 lg:w-2/5 mx-4 sm:mx-auto my-8">
         <form>
           <div className="form-group mb-6">
             <input
@@ -149,7 +152,7 @@ function CreatePost({ isAuth, setLoading }) {
         duration-150
         ease-in-out"
             disabled={buttonDisabled}
-            onClick={() => createPost()}
+            onClick={(e) => createPost(e)}
           >
             Create Post
           </button>

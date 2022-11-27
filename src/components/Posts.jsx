@@ -1,19 +1,18 @@
-import React from "react";
-import { auth, db } from "../firebase-config";
-import { deleteDoc, doc } from "firebase/firestore";
+import React, { useContext } from "react";
+import { auth } from "../firebase-config";
+import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../App";
 
-const PostCard = ({ post, isAuth }) => {
-  const deletePost = async (id) => {
-    const postDoc = doc(db, "posts", id);
-    await deleteDoc(postDoc);
-  };
-  
+const PostCard = ({ post, deletePost }) => {
+  const { isAuth} = useContext(GlobalContext);
+  const navigate = useNavigate();
+
   return (
     <div className="w-full flex flex-col gap-y-9 h-[350px] mx-auto shadow p-3">
-      <div className="h-1/2 container">
+      <div className="h-1/2 container flex justify-center items-center">
         <img h="inherit" w="inherit" src={post.image} alt="post" />
       </div>
-      <div className="h-1/2 py-8 px-2">
+      <div className="flex flex-col gap-y-1 py-5 px-2">
         <div className="flex justify-between items-center">
           <h1 className="font-sans font-medium subpixel-antialiased text-lg truncate">
             {post.title}
@@ -32,11 +31,18 @@ const PostCard = ({ post, isAuth }) => {
         </div>
 
         <div className="flex flex-col gap-y-2">
-          <p className="text-sm font-light font-sans truncate">
+          <p className="text-sm  font-light font-sans truncate">
             {post.content}
           </p>
           <h3 className="text-xs font-light font-sans truncate">
             Author : @{post.author.name}
+          </h3>
+
+          <h3
+            className="text-xs text-blue-700 underline decoration-solid font-medium font-sans truncate"
+            onClick={() => navigate(`/post/${post.id}`)}
+          >
+            Read more
           </h3>
         </div>
       </div>
