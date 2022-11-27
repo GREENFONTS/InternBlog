@@ -29,7 +29,7 @@ const Home = () => {
       if (searchText !== "") {
         if (
           post.title.toLowerCase().includes(searchText) ||
-          post.title.includes(searchText)
+          post.content.toLowerCase().includes(searchText)
         ) {
           return post;
         }
